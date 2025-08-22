@@ -313,12 +313,12 @@ The engine keeps bids and asks in priority queues per stock. It matches using pr
 
 Trades pop out; TradeService stores them. The order’s remaining and status are updated.
 
-The response returns with a friendly message and any trades that happened.
+The response returns any trades that happened.
 
 Meanwhile, StockSearchService can load a million-ish stocks into a small Trie + TreeMap + Map index.
 
-StockController lets me reload, find by ID, or search by prefix.
+StockController reloads, find by ID, or search by prefix.
 
-TradeController lets me pull recent trades to see what actually filled.
+TradeController pulls recent trades to see what actually filled.
 
-OrderController can show me a book snapshot so I can peek at top bids/asks.
+OrderController shows a book snapshot so I can peek at top bids/asks.
