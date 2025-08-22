@@ -1,4 +1,35 @@
+The problem was to design a stock order matching system similar to how an exchange works. The system should accept buy and sell orders, maintain an order book, and execute trades when compatible prices meet (buyers willing to pay as much as sellers are asking).
+My approach was to break this into layers (Controller → Service → DAO → Model/DTO), and use the right data structures for fast matching:
+
+Priority Queues (PriorityQueue<Order>) for bids and asks, sorted by price and time.
+Trie + TreeMap + HashMap in StockSearchService to support fast prefix search of stock names.
+In-memory DAO layer using simple Maps and Lists, which can later be swapped with a database implementation.
+
+Setup Instructions
+
+Prerequisites
+Java 21 installed.
+Maven 3.9+ installed and available in your PATH.
+VS Code (or IntelliJ / Eclipse) with Java + Lombok support enabled.
+
+Run the Project with below steps:
+
+1-Clone or copy the project and navigate into it:
+      cd Stock_exchange
+2- Run using Spring Boot plugin:
+      mvn spring-boot:run
+3-Access the APIs (default port 8080):
+   Place order → POST http://localhost:8080/api/orders
+   Get order book → GET http://localhost:8080/api/orders/{stockId}/book
+   Search stocks → GET http://localhost:8080/api/stocks/search?prefix=INF
+   Reload stocks → POST http://localhost:8080/api/stocks/_reload
+   Get trades → GET http://localhost:8080/api/trades/{stockId}
+
+
+
+
 Below is the structure of the Project
+
 ├─ StockExchangeApplication.java
 ├─ controller
 │  ├─ OrderController.java
